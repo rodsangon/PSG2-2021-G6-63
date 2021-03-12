@@ -254,19 +254,7 @@
             <url>https://www.apache.org/licenses/LICENSE-2.0</url>
         </license>
     </licenses>
-    
-    <!-- Developers -->
-    <developers>
-    <developer>
-      <id>lucperrui</id>
-      <name>Lucas Perez</name>
-      <email>lucperrui@alum.us.es</email>
-      <url>https://www.linkedin.com/in/lucasper/</url>
-      <organization>PSG2-G6-63</organization>
-      <roles>
-        <role>developer</role>
-      </roles>
-    </developer>
-  </developers>
+
+
 
 </project>
