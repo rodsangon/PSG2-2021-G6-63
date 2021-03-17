@@ -267,6 +267,16 @@
         <role>developer</role>
       </roles>
     </developer>
+    
+    <developer>
+      <id>olisanrod</id>
+      <name>Oliva Sánchez Rodríguez</name>
+      <email>olisanrod@alum.us.es</email>
+      <organization>PSG2-G6-63</organization>
+      <roles>
+        <role>developer</role>
+      </roles>
+    </developer>
   </developers>
 
 </project>
