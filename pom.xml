@@ -267,6 +267,16 @@
         <role>developer</role>
       </roles>
     </developer>
+    <developer>
+      <id>Rodrigosg00</id>
+      <name>Rodrigo Sanchez</name>
+      <email>rodrigo26stj@gmail.com</email>
+      <organization>PSG2-G6-63</organization>
+      <roles>
+        <role>developer</role>
+        <role>scrum master</role>
+      </roles>
+    </developer>
   </developers>
 
 </project>
