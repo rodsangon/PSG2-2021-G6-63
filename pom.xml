@@ -145,6 +145,10 @@
             <artifactId>spring-boot-devtools</artifactId>
             <optional>true</optional>
         </dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+		</dependency>
     </dependencies>
 
     <build>
@@ -292,6 +296,16 @@
       <id>olisanrod</id>
       <name>Oliva Sánchez Rodríguez</name>
       <email>olisanrod@alum.us.es</email>
+      <organization>PSG2-G6-63</organization>
+      <roles>
+        <role>developer</role>
+      </roles>
+    </developer>
+    
+     <developer>
+      <id>danrodcar</id>
+      <name>Daniel Rodríguez Caro</name>
+      <email>danrodcar@alum.us.es</email>
       <organization>PSG2-G6-63</organization>
       <roles>
         <role>developer</role>

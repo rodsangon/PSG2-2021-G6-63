@@ -254,7 +254,51 @@
             <url>https://www.apache.org/licenses/LICENSE-2.0</url>
         </license>
     </licenses>
-
-
+    
+    <!-- Developers -->
+    <developers>
+    <developer>
+      <id>lucperrui</id>
+      <name>Lucas Perez</name>
+      <email>lucperrui@alum.us.es</email>
+      <url>https://www.linkedin.com/in/lucasper/</url>
+      <organization>PSG2-G6-63</organization>
+      <roles>
+        <role>developer</role>
+      </roles>
+    </developer>
+    <developer>
+      <id>Rodrigosg00</id>
+      <name>Rodrigo Sanchez</name>
+      <email>rodrigo26stj@gmail.com</email>
+      <organization>PSG2-G6-63</organization>
+      <roles>
+        <role>developer</role>
+        <role>scrum master</role>
+      </roles>
+    </developer>
+    
+     <developer>
+      <id>pabsamort2</id>
+      <name>Pablo Santos</name>
+      <email>pabsanort2@alum.us.es</email>
+      <organization>PSG2-G6-63</organization>
+      <roles>
+        <role>developer</role>
+      </roles>
+    </developer>
+    
+        <developer>
+      <id>olisanrod</id>
+      <name>Oliva Sánchez Rodríguez</name>
+      <email>olisanrod@alum.us.es</email>
+      <organization>PSG2-G6-63</organization>
+      <roles>
+        <role>developer</role>
+      </roles>
+    </developer>
+    
+    
+  </developers>
 
 </project>
