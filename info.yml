@@ -4,7 +4,7 @@ project:
   teamId: '63'
   identities:
     github:
-      url: 'https://github.com/gii-is-psg2/spring-petclinic'
+      url: 'https://github.com/gii-is-psg2/PSG2-2021-G6-63'
   members:
     member1:
       name: 'Lucas'
@@ -17,7 +17,7 @@ project:
     member3:
       name: 'Rodrigo'
       surname: 'Sánchez'
-      githubUsername: 'danrodcar'
+      githubUsername: 'Rodrigosg00'
     member4:
       name: 'Oliva'
       surname: 'Sánchez'
