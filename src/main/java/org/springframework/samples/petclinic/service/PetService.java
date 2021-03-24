@@ -19,6 +19,7 @@ import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.model.Pet;
 import org.springframework.samples.petclinic.model.PetType;
 import org.springframework.samples.petclinic.model.Visit;
@@ -77,6 +78,16 @@ public class PetService {
 
 	public Collection<Visit> findVisitsByPetId(int petId) {
 		return visitRepository.findByPetId(petId);
+	}
+	
+	@Transactional
+	public void deletePets(Pet pet) throws DataAccessException{
+		petRepository.delete(pet);
+	}
+	
+	@Transactional
+	public void deletePetsByOwnerId(int ownerId) {
+		petRepository.deleteAllByOwnerId(ownerId);
 	}
 
 }
