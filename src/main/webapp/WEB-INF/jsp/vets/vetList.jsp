@@ -17,6 +17,7 @@
         <tr>
             <th>Name</th>
             <th>Specialties</th>
+            <th>Options</th>
             <sec:authorize access="hasAuthority('admin')">
             <th>Acciones</th>
             </sec:authorize>
@@ -34,6 +35,14 @@
                     </c:forEach>
                     <c:if test="${vet.nrOfSpecialties == 0}">none</c:if>
                 </td>
+
+              <td>
+                <spring:url value="/vets/{vetId}/delete" var="deleteUrl">
+        				<spring:param name="vetId" value="${vet.id}"/>
+    				</spring:url>
+    				<a href="${fn:escapeXml(deleteUrl)}" class="btn btn-default">Delete</a>
+                </td>
+              
                 <sec:authorize access="hasAuthority('admin')">
                 <td>
                     <spring:url value = "/vets/save/{vetID}" var = "vetUrl">
@@ -42,6 +51,7 @@
                     <a href = "${fn:escapeXml(vetUrl)}" >Editar</a>
                 </td>
                 </sec:authorize>
+              
             </tr>
         </c:forEach>
         </tbody>

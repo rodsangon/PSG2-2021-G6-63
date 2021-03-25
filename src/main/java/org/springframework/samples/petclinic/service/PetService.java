@@ -24,6 +24,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.model.Booking;
 import org.springframework.samples.petclinic.model.Pet;
 import org.springframework.samples.petclinic.model.PetType;
@@ -90,7 +91,23 @@ public class PetService {
 	public Collection<Visit> findVisitsByPetId(int petId) {
 		return visitRepository.findByPetId(petId);
 	}
+	
+	@Transactional
+	public void deleteVisit(final Visit visit){
+		this.visitRepository.delete(visit);
+	}
+	
+	@Transactional
+	public Visit findVisitById(final int visitId) {
+		return visitRepository.findVisitById(visitId);
 
+	}
+	
+    @Transactional
+    public void deletePet(final Pet pet) throws DataAccessException{
+        this.petRepository.delete(pet);
+    }
+    
 	public void saveBooking(@Valid Booking booking) throws Exception {
 		//TODO refactorizar para hacer más eficiente con Custom query
 		

@@ -40,5 +40,10 @@ public interface VetRepository extends CrudRepository<Vet, Integer>{
 	 * @return a <code>Collection</code> of <code>Vet</code>s
 	 */
 	Collection<Vet> findAll() throws DataAccessException;
+	
+
+	Vet findById(int id);
+	
+	void delete(Vet vet);
 
 }
