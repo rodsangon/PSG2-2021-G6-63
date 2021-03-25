@@ -40,6 +40,7 @@ import org.springframework.beans.support.PropertyComparator;
  * @author Sam Brannen
  * @author Arjen Poutsma
  */
+
 @Entity
 @Table(name = "vets")
 public class Vet extends Person {
