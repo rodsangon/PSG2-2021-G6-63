@@ -79,11 +79,10 @@ public class OwnerService {
 		authoritiesService.saveAuthorities(owner.getUser().getUsername(), "owner");
 	}		
 
-	@Transactional
-	public void deleteOwner(Integer ownerId) throws DataAccessException{
-		petService.deletePetsByOwnerId(ownerId);
-		ownerRepository.deleteById(ownerId);
-	}
+    @Transactional
+    public void deleteOwner(final Owner owner) throws DataAccessException{
+        this.ownerRepository.delete(owner);
+    }
 	
 	
 	

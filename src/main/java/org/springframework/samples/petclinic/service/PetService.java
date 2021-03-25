@@ -80,14 +80,9 @@ public class PetService {
 		return visitRepository.findByPetId(petId);
 	}
 	
-	@Transactional
-	public void deletePets(Pet pet) throws DataAccessException{
-		petRepository.delete(pet);
-	}
-	
-	@Transactional
-	public void deletePetsByOwnerId(int ownerId) {
-		petRepository.deleteAllByOwnerId(ownerId);
-	}
 
+    @Transactional
+    public void deletePet(final Pet pet) throws DataAccessException{
+        this.petRepository.delete(pet);
+    }
 }

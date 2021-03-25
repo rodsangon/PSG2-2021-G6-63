@@ -54,7 +54,11 @@ public interface PetRepository extends CrudRepository<Pet, Integer> {
 	 * @see BaseEntity#isNew
 	 */
 	
-	void deleteAllByOwnerId(int ownerId);
+	//void deleteAllByOwnerId(int ownerId);
+	
+	//TODO void save(Pet pet);
+
+    void delete(Pet pet);
 	
 
 }

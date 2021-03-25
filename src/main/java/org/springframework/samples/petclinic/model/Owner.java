@@ -123,7 +123,7 @@ public class Owner extends Person {
 		pet.setOwner(this);
 	}
 	
-	public boolean removePet(Pet pet) {
+	public boolean deletePet(Pet pet) {
 		return getPetsInternal().remove(pet);
 	}
 
