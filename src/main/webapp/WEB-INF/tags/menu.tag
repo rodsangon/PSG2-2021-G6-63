@@ -51,7 +51,7 @@
 
 
 
-			<ul class="nav navbar-nav navbar-right">
+			<ul class="nav navbar-nav navbar-right" >
 				<sec:authorize access="!isAuthenticated()">
 					<li><a href="<c:url value="/login" />">Login</a></li>
 					<li><a href="<c:url value="/users/new" />">Register</a></li>
@@ -64,7 +64,7 @@
 					</a>
 						<ul class="dropdown-menu">
 							<li>
-								<div class="navbar-login">
+								<div class="navbar-login" >
 									<div class="row">
 										<div class="col-lg-4">
 											<p class="text-center">
