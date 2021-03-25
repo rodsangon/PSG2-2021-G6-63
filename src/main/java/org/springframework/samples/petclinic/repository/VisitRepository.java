@@ -41,5 +41,9 @@ public interface VisitRepository extends CrudRepository<Visit, Integer> {
 	 */
 
 	List<Visit> findByPetId(Integer petId);
+	
+	Visit findVisitById(Integer visitId);
+
+	void delete(Visit visit);
 
 }

@@ -23,11 +23,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.model.Pet;
 import org.springframework.samples.petclinic.model.Visit;
 import org.springframework.samples.petclinic.service.PetService;
-import org.springframework.samples.petclinic.service.VetService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 /**
  * @author Juergen Hoeller
@@ -89,5 +93,13 @@ public class VisitController {
 		model.put("visits", this.petService.findPetById(petId).getVisits());
 		return "visitList";
 	}
-
+	
+	@GetMapping(value = "/owners/{ownerId}/pets/{petId}/visits/{visitId}/delete")
+	public String deleteVisit(@PathVariable int ownerId, @PathVariable int petId, @PathVariable int visitId, ModelMap model) {
+		Pet pet = this.petService.findPetById(petId);
+		Visit visit = this.petService.findVisitById(visitId);
+		pet.deleteVisit(visit);
+		petService.deleteVisit(visit);
+		return "redirect:/owners/{ownerId}";
+	}
 }

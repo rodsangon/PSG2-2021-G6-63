@@ -24,6 +24,7 @@ import org.springframework.data.repository.Repository;
 import org.springframework.samples.petclinic.model.BaseEntity;
 import org.springframework.samples.petclinic.model.Pet;
 import org.springframework.samples.petclinic.model.PetType;
+import org.springframework.samples.petclinic.model.Visit;
 
 /**
  * Spring Data JPA specialization of the {@link PetRepository} interface
@@ -51,14 +52,13 @@ public interface PetRepository extends CrudRepository<Pet, Integer> {
 	/**
 	 * Save a <code>Pet</code> to the data store, either inserting or updating it.
 	 * @param pet the <code>Pet</code> to save
+	 * @return 
 	 * @see BaseEntity#isNew
 	 */
 	
-	//void deleteAllByOwnerId(int ownerId);
 	
-	//TODO void save(Pet pet);
-
     void delete(Pet pet);
+
 	
 
 }
