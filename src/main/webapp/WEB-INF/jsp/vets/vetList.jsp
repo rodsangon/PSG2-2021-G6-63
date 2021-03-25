@@ -8,15 +8,14 @@
 	uri="http://www.springframework.org/security/tags"%>
 
 <petclinic:layout pageName="vets">
-	
-    <h2>Veterinarians</h2>
-    
+    <h2>Veterinarios</h2>
+
 
     <table id="vetsTable" class="table table-striped">
         <thead>
         <tr>
-            <th>Name</th>
-            <th>Specialties</th>
+            <th>Nombre</th>
+            <th>Especialidad</th>
             <th>Options</th>
             <sec:authorize access="hasAuthority('admin')">
             <th>Acciones</th>
@@ -64,7 +63,7 @@
     <table class="table-buttons">
         <tr>
             <td>
-                <a href="<spring:url value="/vets.xml" htmlEscape="true" />">View as XML</a>
+                <a href="<spring:url value="/vets.xml" htmlEscape="true" />">Ver como XML</a>
                 <sec:authorize access="hasAuthority('admin')">
                 <a class="btn btn-default" href='<spring:url value="/vets/new" htmlEscape="true"/>'>Anadir veterinario</a>
                 </sec:authorize>
