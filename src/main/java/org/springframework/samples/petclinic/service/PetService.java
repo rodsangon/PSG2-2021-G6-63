@@ -15,14 +15,23 @@
  */
 package org.springframework.samples.petclinic.service;
 
+import java.time.LocalDate;
 import java.util.Collection;
+import java.util.List;
+import java.util.Set;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.samples.petclinic.model.Booking;
 import org.springframework.samples.petclinic.model.Pet;
 import org.springframework.samples.petclinic.model.PetType;
+import org.springframework.samples.petclinic.model.Room;
 import org.springframework.samples.petclinic.model.Visit;
+import org.springframework.samples.petclinic.repository.BookingRepository;
 import org.springframework.samples.petclinic.repository.PetRepository;
+import org.springframework.samples.petclinic.repository.RoomRepository;
 import org.springframework.samples.petclinic.repository.VisitRepository;
 import org.springframework.samples.petclinic.service.exceptions.DuplicatedPetNameException;
 import org.springframework.stereotype.Service;
@@ -42,7 +51,10 @@ public class PetService {
 	
 	private VisitRepository visitRepository;
 	
-
+	private BookingRepository bookingRepository;
+	
+	private RoomRepository roomRepository;
+	
 	@Autowired
 	public PetService(PetRepository petRepository,
 			VisitRepository visitRepository) {
@@ -77,6 +89,40 @@ public class PetService {
 
 	public Collection<Visit> findVisitsByPetId(int petId) {
 		return visitRepository.findByPetId(petId);
+	}
+
+	public void saveBooking(@Valid Booking booking) throws Exception {
+		//TODO refactorizar para hacer más eficiente con Custom query
+		
+		/*
+		 * Esta función comprueba que haya habitaciones disponibles
+		 * para esa fecha, en caso de que la haya, asigna una
+		 * habitación aleatoria. En caso de que no, no hace el save
+		 * y devuelve una excepción.
+		 */
+		List<Room> rooms = roomRepository.findAll();
+		Room room = rooms.stream().filter(x -> isAvailable(x, booking.getCheckIn(), booking.getCheckOut())).findAny().orElse(null);
+		if(room != null) {
+			booking.setRoom(room);
+			bookingRepository.save(booking);
+			//NO CE CI ESTA BIEN
+		} else {
+			throw new Exception("NO HAY HABITACIONES DISPONIBLES PARA ESA FECHA");
+		}
+		
+	}
+
+	private Boolean isAvailable(Room x, LocalDate checkIn, LocalDate checkOut) {
+		Boolean available = true;
+		Set<Booking> bookings = x.getBookings();
+		for (Booking b:bookings) {
+			if((checkIn.isAfter(b.getCheckIn()) && checkIn.isBefore(b.getCheckOut())) 
+					|| (checkOut.isAfter(b.getCheckIn()) && checkOut.isBefore(b.getCheckOut()))){
+				
+				available = false;				
+			}
+		}
+		return available;
 	}
 
 }
