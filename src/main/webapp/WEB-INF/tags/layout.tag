@@ -12,7 +12,7 @@
 <body>
 <petclinic:bodyHeader menuName="${pageName}"/>
 
-<div class="container-fluid" style="background:   #af601a;">
+<div class="container-fluid" style="background:   #eed09d;">
     <div class="container xd-container">
 	<c:if test="${not empty message}" >
 	<div class="alert alert-${not empty messageType ? messageType : 'info'}" role="alert">
