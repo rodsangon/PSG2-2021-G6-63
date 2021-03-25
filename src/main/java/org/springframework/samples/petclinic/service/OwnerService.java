@@ -55,6 +55,9 @@ public class OwnerService {
 	public OwnerService(OwnerRepository ownerRepository) {
 		this.ownerRepository = ownerRepository;
 	}	
+	
+	@Autowired
+	private PetService petService;
 
 	@Transactional(readOnly = true)
 	public Owner findOwnerById(int id) throws DataAccessException {
@@ -76,4 +79,11 @@ public class OwnerService {
 		authoritiesService.saveAuthorities(owner.getUser().getUsername(), "owner");
 	}		
 
+    @Transactional
+    public void deleteOwner(final Owner owner) throws DataAccessException{
+        this.ownerRepository.delete(owner);
+    }
+	
+	
+	
 }
