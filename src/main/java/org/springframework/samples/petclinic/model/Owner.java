@@ -60,11 +60,11 @@ public class Owner extends Person {
 	@Digits(fraction = 0, integer = 10)
 	private String telephone;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
+	@OneToMany(cascade = CascadeType.REMOVE, mappedBy = "owner")
 	private Set<Pet> pets;
 	
 	//
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "username", referencedColumnName = "username")
 	private User user;
 	//
@@ -123,7 +123,7 @@ public class Owner extends Person {
 		pet.setOwner(this);
 	}
 	
-	public boolean removePet(Pet pet) {
+	public boolean deletePet(Pet pet) {
 		return getPetsInternal().remove(pet);
 	}
 
