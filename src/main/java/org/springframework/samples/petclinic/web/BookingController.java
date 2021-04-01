@@ -56,9 +56,9 @@ public class BookingController {
 		Pet pet = this.petService.findPetById(petId);
 		Booking booking = new Booking();
 		pet.addBooking(booking);
+		logger.info("Se ha creado el Booking" + booking.toString());
 		return booking;
 	}
-	
 	@GetMapping(value = "/owners/*/pets/{petId}/booking/new")
 	public String initNewBookingForm(@PathVariable("petId") int petId, Map<String, Object> model) {
 		logger.info("Inicia el formulario de Booking");

@@ -22,6 +22,8 @@ import java.util.Set;
 
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.model.Owner;
@@ -35,6 +37,7 @@ import org.springframework.samples.petclinic.repository.PetRepository;
 import org.springframework.samples.petclinic.repository.RoomRepository;
 import org.springframework.samples.petclinic.repository.VisitRepository;
 import org.springframework.samples.petclinic.service.exceptions.DuplicatedPetNameException;
+import org.springframework.samples.petclinic.web.VisitController;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
@@ -47,6 +50,8 @@ import org.springframework.util.StringUtils;
  */
 @Service
 public class PetService {
+	
+	Logger logger = LoggerFactory.getLogger(PetService.class);
 
 	private PetRepository petRepository;
 	
@@ -108,6 +113,7 @@ public class PetService {
         this.petRepository.delete(pet);
     }
     
+    @Transactional
 	public void saveBooking(@Valid Booking booking) throws Exception {
 		//TODO refactorizar para hacer más eficiente con Custom query
 		

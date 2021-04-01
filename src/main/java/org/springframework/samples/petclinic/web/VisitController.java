@@ -19,6 +19,8 @@ import java.util.Map;
 
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.model.Pet;
 import org.springframework.samples.petclinic.model.Visit;
@@ -41,6 +43,8 @@ import org.springframework.web.bind.annotation.PostMapping;
  */
 @Controller
 public class VisitController {
+	
+	Logger logger = LoggerFactory.getLogger(VisitController.class);
 
 	private final PetService petService;
 
@@ -67,6 +71,7 @@ public class VisitController {
 		Pet pet = this.petService.findPetById(petId);
 		Visit visit = new Visit();
 		pet.addVisit(visit);
+		logger.info("Se ha creado la Visita" + visit.toString());
 		return visit;
 	}
 

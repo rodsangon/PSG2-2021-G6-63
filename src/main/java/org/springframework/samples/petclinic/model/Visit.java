@@ -110,4 +110,11 @@ public class Visit extends BaseEntity {
 	public void setPet(Pet pet) {
 		this.pet = pet;
 	}
+
+	@Override
+	public String toString() {
+		return "Visit [date=" + date + ", description=" + description + ", pet=" + pet + "]";
+	}
+	
+	
 }

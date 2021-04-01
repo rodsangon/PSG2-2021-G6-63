@@ -71,6 +71,14 @@ public class Booking extends BaseEntity{
 	public void setRoom(Room room) {
 		this.room = room;
 	}
+
+	@Override
+	public String toString() {
+		return "Booking [details=" + details + ", checkIn=" + checkIn + ", checkOut=" + checkOut + ", pet=" + pet
+				+ ", room=" + room + "]";
+	}
+	
+	
 	
 	
 
