@@ -4,18 +4,20 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="sec"	uri="http://www.springframework.org/security/tags"%>
+
 
 <petclinic:layout pageName="owners">
-    <h2>Owners</h2>
+    <h2><fmt:message key="owners"/></h2>
 
     <table id="ownersTable" class="table table-striped">
         <thead>
         <tr>
-            <th style="width: 150px; background-color: #d6dbdf">Nombre</th>
-            <th style="width: 200px; background-color: #d6dbdf">Dirección</th>
-            <th style= "background-color: #d6dbdf">Ciudad</th>
-            <th style="width: 120px; background-color: #d6dbdf">Teléfono</th>
-            <th style= "background-color: #d6dbdf">Mascota</th>
+            <th><fmt:message key="name"/></th>
+            <th><fmt:message key="adress"/></th>
+            <th><fmt:message key="city"/></th>
+            <th><fmt:message key="phone"/></th>
+            <th><fmt:message key="pet"/></th>
         </tr>
         </thead>
         <tbody>

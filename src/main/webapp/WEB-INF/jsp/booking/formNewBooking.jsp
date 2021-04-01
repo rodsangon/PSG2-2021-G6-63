@@ -3,27 +3,35 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<fmt:message key="details"/>
 
 <petclinic:layout pageName="owners">
      <jsp:attribute name="customScript">
         <script>
             $(function () {
-                $("#date").datepicker({dateFormat: 'yy/mm/dd'});
+                $("#checkIn").datepicker({dateFormat: 'yy/mm/dd', minDate:"#actualDate"});
+            });
+            
+            $(function () {
+
+                $("#checkOut").datepicker({dateFormat: 'yy/mm/dd', minDate:"#checkIn"});
             });
         </script>
     </jsp:attribute>
     
     <jsp:body>
-    <h2>New booking</h2>
+    <h2><fmt:message key="newBooking"/></h2>
     
-    <b>Pet</b>
+    <b><fmt:message key="pet"/></b>
     <table class="table table-striped">
     	<thead>
         <tr>
-        	<th>Name</th>
-            <th>Birth Date</th>
-            <th>Type</th>
-            <th>Owner</th>
+        	<th><fmt:message key="name"/></th>
+            <th><fmt:message key="birthDate"/></th>
+            <th><fmt:message key="type"/></th>
+            <th><fmt:message key="owner"/></th>
         </tr>
         </thead>
         <tr>
@@ -36,28 +44,30 @@
     
     <form:form modelAttribute="booking" class="form-horizontal">
     	<div class="form-group has-feedback">   
-    		<petclinic:inputField label="Details" name="details"/>
-     		<petclinic:inputField label="Check In" name="checkIn"/>
-     		<petclinic:inputField label="Check Out" name="checkOut"/>
+    		<petclinic:inputField label="Detalles" name="details"/>
+     		<petclinic:inputField label="Fecha de entrada" name="checkIn"/>
+     		<petclinic:inputField label="Fecha de salida" name="checkOut"/>
      		
      	</div>
      	
      	<div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <input type="hidden" name="petId" value="${booking.pet.id}"/>
-                    <button class="btn btn-default" type="submit">Reserve</button>
+                
+                    	<input type="hidden" name="petId" value="${booking.pet.id}"/>
+                    	<button class="btn btn-default" type="submit"><fmt:message key="reserve"/></button>
+                    
                 </div>
             </div>  	
     </form:form>
     
     
             <br/>
-        <b>Previous Bookings</b>
+        <b><fmt:message key="previousBookings"/></b>
         <table class="table table-striped">
             <tr>
-                <th>Check In</th>
-                <th>Check Out</th>
-                <th>Details</th>
+                <th><fmt:message key="checkIn"/></th>
+                <th><fmt:message key="checkOut"/></th>
+                <th><fmt:message key="details"/></th>
             </tr>
             <c:forEach var="booking" items="${booking.pet.bookings}">
                 <c:if test="${!booking['new']}">
