@@ -10,14 +10,12 @@
 
 <petclinic:layout pageName="owners">
 
-    <h2>Buscar dueños</h2>
-
-    
+    <h2><fmt:message key="searchOwner"/></h2>
     <form:form modelAttribute="owner" action="/owners" method="get" class="form-horizontal"
                id="search-owner-form">
         <div class="form-group">
             <div class="control-group" id="lastName">
-                <label class="col-sm-2 control-label">Apellido </label>
+                <label class="col-sm-2 control-label"><fmt:message key="surname"/></label>
                 <div class="col-sm-10">
                     <form:input class="form-control" path="lastName" size="30" maxlength="80"/>
                     <span class="help-inline"><form:errors path="*"/></span>
@@ -26,7 +24,7 @@
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-default">Buscar dueño</button>
+                <button type="submit" class="btn btn-default"><fmt:message key="searchOwner"/></button>
             </div>
         </div>
 
@@ -34,7 +32,7 @@
 
     <br/> 
     <sec:authorize access="hasAuthority('admin')">
-		<a class="btn btn-default" href='<spring:url value="/owners/new" htmlEscape="true"/>'>Añadir dueño</a>
+		<a class="btn btn-default" href='<spring:url value="/owners/new" htmlEscape="true"/>'><fmt:message key="addOwner"/></a>
 	</sec:authorize>
 	
 </petclinic:layout>

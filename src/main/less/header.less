@@ -1,6 +1,11 @@
+@dark-brown: #aa530e;
+@medium-brown: #df8931;
+@light-brown: #f5c16c;
+@white: #f3eded;
+
 .navbar {
-  border-top: 4px solid #6db33f;
-  background-color:   #af601a ;
+  border-top: 4px solid @light-brown;
+  background-color:   @dark-brown ;
   margin-bottom: 0px;
   border-bottom: 0;
   border-left: 0;
@@ -8,7 +13,7 @@
 }
 
 .navbar a.navbar-brand {
-  background: url("../images/pngegg.png") -1px -1px no-repeat;
+  background: url("../images/spring-logo-dataflow.png") -1px -1px no-repeat;
   margin: 12px 0 6px;
   width: 229px;
   height: 46px;
@@ -21,7 +26,7 @@
   display: block;
   width: 229px;
   height: 46px;
-  background: url("../images/pngegg.png") -1px -48px no-repeat;
+  background: url("../images/spring-logo-dataflow.png") -1px -48px no-repeat;
   opacity: 0;
   -moz-transition: opacity 0.12s ease-in-out;
   -webkit-transition: opacity 0.12s ease-in-out;
@@ -54,9 +59,10 @@
   margin-top: 0;
   margin-bottom: 0;
 }
+
 .navbar li:hover > a {
-  color: #eeeeee;
-  background-color: #6db33f;
+  color: @white;
+  background-color: @medium-brown;
 }
 
 .navbar-toggle {
