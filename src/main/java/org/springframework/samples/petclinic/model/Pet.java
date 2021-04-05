@@ -107,10 +107,20 @@ public class Pet extends NamedEntity {
 	protected void setVisitsInternal(Set<Visit> visits) {
 		this.visits = visits;
 	}
+	
+	protected void setBookingsInternal(Set<Booking> bookings) {
+		this.bookings = bookings;
+	}
 
 	public List<Visit> getVisits() {
 		List<Visit> sortedVisits = new ArrayList<>(getVisitsInternal());
 		PropertyComparator.sort(sortedVisits, new MutableSortDefinition("date", false, false));
+		return Collections.unmodifiableList(sortedVisits);
+	}
+	
+	public List<Booking> getBookings() {
+		List<Booking> sortedVisits = new ArrayList<>(getBookingsInternal());
+		PropertyComparator.sort(sortedVisits, new MutableSortDefinition("checkIn", false, false));
 		return Collections.unmodifiableList(sortedVisits);
 	}
 
@@ -119,22 +129,17 @@ public class Pet extends NamedEntity {
 		visit.setPet(this);
 	}
 	
-	public void deleteVisit(final Visit visit) {
-        this.getVisitsInternal().remove(visit);
-    }
-
 	public void addBooking(Booking booking) {
 		getBookingsInternal().add(booking);
 		booking.setPet(this);
 	}
-
-	public Set<Booking> getBookings() {
-		return bookings;
-	}
-
-	public void setBookings(Set<Booking> bookings) {
-		this.bookings = bookings;
-	}
 	
+	public void deleteVisit(final Visit visit) {
+        this.getVisitsInternal().remove(visit);
+    }
+	
+	public void deleteBooking(final Booking booking) {
+        this.getBookingsInternal().remove(booking);
+    }
 	
 }
