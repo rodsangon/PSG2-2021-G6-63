@@ -5,8 +5,6 @@
 <%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<fmt:message key="details"/>
-
 <petclinic:layout pageName="owners">
      <jsp:attribute name="customScript">
         <script>
@@ -15,7 +13,6 @@
             });
             
             $(function () {
-
                 $("#checkOut").datepicker({dateFormat: 'yy/mm/dd', minDate:"#checkIn"});
             });
         </script>
@@ -59,8 +56,7 @@
                 </div>
             </div>  	
     </form:form>
-    
-    
+
             <br/>
         <b><fmt:message key="previousBookings"/></b>
         <table class="table table-striped">
@@ -79,9 +75,5 @@
                 </c:if>
             </c:forEach>
         </table>
-		
-     	
-
- 
     </jsp:body>
 </petclinic:layout>
