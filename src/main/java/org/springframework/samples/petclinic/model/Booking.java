@@ -28,9 +28,9 @@ public class Booking extends BaseEntity{
 	@JoinColumn(name = "pet_id")
 	private Pet pet;
 	
-	@ManyToOne
+	/*@ManyToOne
 	@JoinColumn(name = "room_id")
-	private Room room;
+	private Room room;*/
 
 	public String getDetails() {
 		return details;
@@ -64,22 +64,18 @@ public class Booking extends BaseEntity{
 		this.pet = pet;
 	}
 
-	public Room getRoom() {
+	/*public Room getRoom() {
 		return room;
 	}
 
 	public void setRoom(Room room) {
 		this.room = room;
-	}
+	}*/
 
 	@Override
 	public String toString() {
 		return "Booking [details=" + details + ", checkIn=" + checkIn + ", checkOut=" + checkOut + ", pet=" + pet
-				+ ", room=" + room + "]";
+				+ ", room=" + null + "]";
 	}
-	
-	
-	
-	
 
 }

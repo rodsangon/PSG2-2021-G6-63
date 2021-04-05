@@ -11,8 +11,8 @@
     </h2>
       <form:form modelAttribute="vet" class="form-horizontal" id="add-vets-form">
         <div class="form-group has-feedback">
-            <petclinic:inputField label="Nombre" name="firstName"/>
-             <petclinic:inputField label="Apellido" name="lastName"/>
+        	<petclinic:inputField label="Nombre" name="firstName"/>
+            <petclinic:inputField label="Apellido" name="lastName"/>
  			<petclinic:selectField label="Especialidad" names="${specialties}" name="specialties" size="5"/>
         </div>    
         
@@ -31,9 +31,4 @@
             </div>
         </div> 
     </form:form>
-    
-    <c:forEach var="spec" items="${specialties}" >
-  		<p>${spec}</p>
-	</c:forEach>
-    
 </petclinic:layout> 

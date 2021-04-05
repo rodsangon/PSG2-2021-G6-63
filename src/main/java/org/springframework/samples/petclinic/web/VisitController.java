@@ -71,14 +71,12 @@ public class VisitController {
 		Pet pet = this.petService.findPetById(petId);
 		Visit visit = new Visit();
 		pet.addVisit(visit);
-		logger.info("Se ha creado la Visita" + visit.toString());
 		return visit;
 	}
 
 	// Spring MVC calls method loadPetWithVisit(...) before initNewVisitForm is called
 	@GetMapping(value = "/owners/*/pets/{petId}/visits/new")
 	public String initNewVisitForm(@PathVariable("petId") int petId, Map<String, Object> model) {
-		System.out.println("ENTRA ARRIBA");
 		return "pets/createOrUpdateVisitForm";
 	}
 
@@ -86,12 +84,10 @@ public class VisitController {
 	@PostMapping(value = "/owners/{ownerId}/pets/{petId}/visits/new")
 	public String processNewVisitForm(@Valid Visit visit, BindingResult result) {
 		if (result.hasErrors()) {
-			System.out.println("ENTRA EN MEDIO");
 			return "pets/createOrUpdateVisitForm";
 		}
 		else {
 			this.petService.saveVisit(visit);
-			System.out.println("ENTRA ABAJO");
 			return "redirect:/owners/{ownerId}";
 		}
 	}
