@@ -34,8 +34,8 @@ In the retrospective meeting, the team has a discussion about those results.
 
 | Day           | danrodcar    | Rodrigosg00  | olisanrod     | pabsanort2    | lucasperezweb     | 
 | ------------- | ------------- | -------------  | -------------  | -------------  | -------------  
-| Day 1         | :smile:        |                |                |    :smile:            |                | 
-| Day 2         |               |    :smile:            |                |                |                |   
-| Day 3         |               |    :worried:            |                |                |                |  
-| Day 4         |  :neutral_face:             |               |                |                |                | 
+| Day 12/04         |        |                |                |    :neutral_face:            |                | 
+| Day 2         |               |                |                |                |                |   
+| Day 3         |               |               |                |                |                |  
+| Day 4         |             |               |                |                |                | 
 ...
