@@ -15,7 +15,7 @@
 
 | Day           | danrodcar    | Rodrigosg00  | olisanrod     | pabsanort2    | lucasperezweb     | 
 | ------------- | ------------- | -------------  | -------------  | -------------  | -------------  
-| Day 12/04     |:neutral_face: |:neutral_face: |neutral_face:    |:neutral_face: |:smiley:        | 
+| Day 12/04     |:neutral_face: |:neutral_face: |:neutral_face:    |:neutral_face: |:smiley:        | 
 | Day 16/04     |:smiley:       |:smiley:       |   :smiley:     |:smiley:        |:smiley:        |   
 | Day 3         |               |               |                |                |                |  
 | Day 4         |               |               |                |                |                | 
