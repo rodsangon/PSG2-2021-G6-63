@@ -1,4 +1,4 @@
-# Niko Niko Calendar of team PSG2-2021-G&-63
+# Niko Niko Calendar of team PSG2-2021-G6-63
 
 ### Example
 
