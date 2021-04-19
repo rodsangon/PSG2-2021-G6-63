@@ -55,6 +55,8 @@ public class Pet extends NamedEntity {
 	@JoinColumn(name = "type_id")
 	private PetType type;
 
+	private Boolean isInAdoption = false;
+
 	@ManyToOne
 	@JoinColumn(name = "owner_id")
 	private Owner owner;
@@ -64,6 +66,7 @@ public class Pet extends NamedEntity {
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "pet", fetch = FetchType.EAGER)
 	private Set<Booking> bookings;
+	
 
 	public void setBirthDate(LocalDate birthDate) {
 		this.birthDate = birthDate;
@@ -110,6 +113,14 @@ public class Pet extends NamedEntity {
 	
 	protected void setBookingsInternal(Set<Booking> bookings) {
 		this.bookings = bookings;
+	}
+
+	public Boolean getIsInAdoption() {
+		return isInAdoption;
+	}
+
+	public void setIsInAdoption(Boolean isInAdoption) {
+		this.isInAdoption = isInAdoption;
 	}
 
 	public List<Visit> getVisits() {

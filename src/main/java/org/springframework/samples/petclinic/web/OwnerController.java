@@ -24,6 +24,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.service.AuthoritiesService;
 import org.springframework.samples.petclinic.service.OwnerService;
+import org.springframework.samples.petclinic.service.PetService;
 import org.springframework.samples.petclinic.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -46,12 +47,16 @@ import org.springframework.web.servlet.ModelAndView;
 public class OwnerController {
 
 	private static final String VIEWS_OWNER_CREATE_OR_UPDATE_FORM = "owners/createOrUpdateOwnerForm";
+	private static final String ADOPTION_LIST = "pets/adoptionList";
+	private static final String PET_DETAILS = "pets/petDetails";
 
 	private final OwnerService ownerService;
+	private final PetService petService;
 
 	@Autowired
-	public OwnerController(OwnerService ownerService, UserService userService, AuthoritiesService authoritiesService) {
+	public OwnerController(OwnerService ownerService, PetService petService, UserService userService, AuthoritiesService authoritiesService) {
 		this.ownerService = ownerService;
+		this.petService = petService;
 	}
 
 	@InitBinder
@@ -151,5 +156,16 @@ public class OwnerController {
         return "redirect:/owners";
     }
 	
+	 @GetMapping(value = "/pets/adoptionList")
+     public String adoptionList(final ModelMap model) {
+         model.put("pets", petService.findPetsInAdoption());
+         return ADOPTION_LIST;
+     }
+	 
+	 @GetMapping(value = "/pets/{petId}")
+     public String petDetails(@PathVariable("petId") final int petId, final ModelMap model) {
+         model.put("pet", petService.findPetById(petId));
+         return PET_DETAILS;
+     }
 
 }

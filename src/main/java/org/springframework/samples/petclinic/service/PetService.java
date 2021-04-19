@@ -16,6 +16,8 @@
 package org.springframework.samples.petclinic.service;
 
 import java.util.Collection;
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -118,5 +120,10 @@ public class PetService {
     public void deletePet(final Pet pet) throws DataAccessException{
         this.petRepository.delete(pet);
     }
+
+    @Transactional(readOnly = true)
+	public List<Pet> findPetsInAdoption() {
+		return this.petRepository.findPetsInAdoption();
+	}
 
 }
