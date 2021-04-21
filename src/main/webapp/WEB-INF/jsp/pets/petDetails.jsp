@@ -40,10 +40,39 @@
 		</tr>
 
 	</table>
-	
-	<spring:url value="pets/{petId}/adopt" var="adoptUrl">
-        <spring:param name="petId" value="${pet.id}"/>
-    </spring:url>
-    <a href="${fn:escapeXml(adoptUrl)}" class="btn btn-default"><fmt:message key="adoptPet"/></a>
+
+	<h2>
+		<fmt:message key="owner" />
+	</h2>
+
+	<table class="table table-striped">
+		<tr>
+			<th><fmt:message key="name" /></th>
+			<td><b><c:out value="${owner.firstName} ${owner.lastName}" /></b></td>
+		</tr>
+		<tr>
+			<th><fmt:message key="adress" /></th>
+			<td><c:out value="${owner.address}" /></td>
+		</tr>
+		<tr>
+			<th><fmt:message key="city" /></th>
+			<td><c:out value="${owner.city}" /></td>
+		</tr>
+		<tr>
+			<th><fmt:message key="phone" /></th>
+			<td><c:out value="${owner.telephone}" /></td>
+		</tr>
+		
+		<tr>
+			<th><fmt:message key="username" /></th>
+			<td><c:out value="${owner.user.username}" /></td>
+		</tr>
+	</table>
+
+	<spring:url value="{petId}/adopt" var="adoptUrl">
+		<spring:param name="petId" value="${pet.id}" />
+	</spring:url>
+	<a href="${fn:escapeXml(adoptUrl)}" class="btn btn-default"><fmt:message
+			key="adoptPet" /></a>
 
 </petclinic:layout>

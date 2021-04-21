@@ -24,10 +24,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.samples.petclinic.model.Adoption;
 import org.springframework.samples.petclinic.model.Booking;
 import org.springframework.samples.petclinic.model.Pet;
 import org.springframework.samples.petclinic.model.PetType;
 import org.springframework.samples.petclinic.model.Visit;
+import org.springframework.samples.petclinic.repository.AdoptionRepository;
 import org.springframework.samples.petclinic.repository.BookingRepository;
 import org.springframework.samples.petclinic.repository.PetRepository;
 import org.springframework.samples.petclinic.repository.VisitRepository;
@@ -52,6 +54,8 @@ public class PetService {
 	private VisitRepository visitRepository;
 	
 	private BookingRepository bookingRepository;
+	
+	private AdoptionRepository adoptionRepository;
 	
 	//private RoomRepository roomRepository;
 	
@@ -125,5 +129,9 @@ public class PetService {
 	public List<Pet> findPetsInAdoption() {
 		return this.petRepository.findPetsInAdoption();
 	}
-
+    
+    @Transactional
+    public void saveAdoption(Adoption adoption) {
+    	this.adoptionRepository.save(adoption);
+    }
 }
