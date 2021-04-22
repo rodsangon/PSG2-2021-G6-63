@@ -93,7 +93,7 @@ public class Pet extends NamedEntity {
 		return this.owner;
 	}
 
-	protected void setOwner(Owner owner) {
+	public void setOwner(Owner owner) {
 		this.owner = owner;
 	}
 
@@ -138,6 +138,14 @@ public class Pet extends NamedEntity {
 		List<Booking> sortedVisits = new ArrayList<>(getBookingsInternal());
 		PropertyComparator.sort(sortedVisits, new MutableSortDefinition("checkIn", false, false));
 		return Collections.unmodifiableList(sortedVisits);
+	}
+
+	public Adoption getAdoption() {
+		return adoption;
+	}
+
+	public void setAdoption(Adoption adoption) {
+		this.adoption = adoption;
 	}
 
 	public void addVisit(Visit visit) {

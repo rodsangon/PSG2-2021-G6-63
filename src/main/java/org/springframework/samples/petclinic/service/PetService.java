@@ -61,10 +61,11 @@ public class PetService {
 	
 	@Autowired
 	public PetService(PetRepository petRepository,
-			VisitRepository visitRepository, BookingRepository bookingRepository) {
+			VisitRepository visitRepository, BookingRepository bookingRepository, AdoptionRepository adoptionRepository) {
 		this.petRepository = petRepository;
 		this.visitRepository = visitRepository;
 		this.bookingRepository = bookingRepository;
+		this.adoptionRepository = adoptionRepository;
 	}
 
 	@Transactional(readOnly = true)
@@ -131,7 +132,25 @@ public class PetService {
 	}
     
     @Transactional
-    public void saveAdoption(Adoption adoption) {
+    public void saveAdoption(@Valid Adoption adoption) {
     	this.adoptionRepository.save(adoption);
     }
+
+    @Transactional(readOnly = true)
+	public List<Adoption> findAdoptionsByOwnerId(Integer id) {
+		// TODO Auto-generated method stub
+		return this.adoptionRepository.findAdoptionsByOwnerId(id);
+	}
+
+    @Transactional(readOnly = true)
+	public Adoption findAdoptionById(int adoptionId) {
+		// TODO Auto-generated method stub
+		return this.adoptionRepository.findAdoptionsById(adoptionId);
+	}
+
+    @Transactional
+	public void deleteAdoption(Adoption adoption) throws DataAccessException{
+		this.adoptionRepository.delete(adoption);
+		
+	}
 }

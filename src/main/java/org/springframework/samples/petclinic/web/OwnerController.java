@@ -17,6 +17,7 @@ package org.springframework.samples.petclinic.web;
 
 import java.security.Principal;
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 
 import javax.validation.Valid;
@@ -38,7 +39,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -54,6 +54,8 @@ public class OwnerController {
 	private static final String ADOPTION_LIST = "pets/adoptionList";
 	private static final String PET_DETAILS = "pets/petDetails";
 	private static final String ADOPT_FORM = "pets/adoptForm";
+	private static final String MY_ADOPTION_LIST = "pets/myAdoptions";
+	private static final String ADOPTION_DETAILS = "pets/adoptionDetails";
 
 	private final OwnerService ownerService;
 	private final PetService petService;
@@ -183,33 +185,79 @@ public class OwnerController {
 	@GetMapping("pets/{petId}/adopt")
 	public String initAdoptForm(@PathVariable("petId") final int petId, final ModelMap model, Principal principal) {
 		Owner adoptant = ownerService.findOwnerByUsername(principal.getName());
-		Adoption adoption = new Adoption();
 		Pet pet = petService.findPetById(petId);
 		Owner originalOwner = petService.findPetById(petId).getOwner();
+		Owner owner = new Owner();
 		model.put("pet", pet);
 		model.put("originalOwner", originalOwner);
 		model.put("adoptant", adoptant);
-		model.put("adoption", adoption);
+		model.put("adoption", new Adoption());
 		return ADOPT_FORM;
 	}
 
 	@PostMapping("pets/{petId}/adopt")
-	public String processAdoptForm(@Valid Adoption adoption, @PathVariable("petId") final int petId,
-			@RequestParam(name = "originalOwnerId") final int originalOwnerId, final ModelMap model, Principal principal) {
-		
-		Owner adoptant = ownerService.findOwnerByUsername(principal.getName());
-		Owner originalOwner = ownerService.findOwnerById(originalOwnerId);
-		if(adoptant.equals(originalOwner)) {
+	public String processAdoptForm(@Valid Adoption adoption, final ModelMap model) {
+		Owner originalOwner = adoption.getOriginalOwner();
+		Owner adoptant = adoption.getAdoptant();
+		if (adoptant.equals(originalOwner)) {
 			model.addAttribute("message", "El adoptante no puede ser el owner original!");
 			return ADOPTION_LIST;
+		} else if (adoption.getPet().getAdoption() != null) {
+			model.addAttribute("message", "Esta mascota ya tiene una petición de adopción!");
+			return ADOPTION_LIST;
+		} else if (adoptant.getAdoption() != null) {
+			model.addAttribute("message", "Ya estas en el proceso de adopcion de otra mascota!");
+			return ADOPTION_LIST;
+		} else {
+
+			adoption.getPet().setAdoption(adoption);
+
+			petService.saveAdoption(adoption);
+			model.addAttribute("message", "El proceso de adopcion de la mascota ha comenzado!");
+			return ADOPTION_LIST;
 		}
-		
-		
-		adoption.setOriginalOwner(originalOwner);
-		adoption.setAdoptant(adoptant);
-		
-		petService.saveAdoption(adoption);
-		return ADOPT_FORM;
+	}
+
+	@GetMapping("pets/myAdoptions")
+	public String showAdoptions(Principal principal, final ModelMap model) {
+		Owner logedOwner = ownerService.findOwnerByUsername(principal.getName());
+		List<Adoption> adoptions = petService.findAdoptionsByOwnerId(logedOwner.getId());
+		model.put("owner", logedOwner);
+		model.put("adoptions", adoptions);
+		return MY_ADOPTION_LIST;
+	}
+
+	@GetMapping("pets/adoptions/{adoptionId}")
+	public String adoptionDetailsGet(@PathVariable("adoptionId") final int adoptionId, Principal principal,
+			final ModelMap model) {
+		Adoption adoption = petService.findAdoptionById(adoptionId);
+		model.put("adoption", adoption);
+		return ADOPTION_DETAILS;
+	}
+
+	@PostMapping("pets/adoptions/{adoptionId}")
+	public String acceptAdoption(@Valid Adoption adoption, Principal principal,
+			final ModelMap model) {
+		if (adoption.getAccepted()) {
+			adoption.getPet().setOwner(adoption.getAdoptant());
+			adoption.getPet().setIsInAdoption(false);
+			adoption.getPet().setAdoption(null);
+			adoption.getAdoptant().setAdoption(null);
+			adoption.getOriginalOwner().setAdoption(null);
+			petService.deleteAdoption(adoption);
+
+			model.addAttribute("message", "La adopcion se ha llevado a cabo correctamente!");
+			return ADOPTION_LIST;
+		} else {
+			adoption.getPet().setIsInAdoption(false);
+			adoption.getPet().setAdoption(null);
+			adoption.getAdoptant().setAdoption(null);
+			adoption.getOriginalOwner().setAdoption(null);
+			petService.deleteAdoption(adoption);
+
+			model.addAttribute("message", "La adopcion se ha denegado correctamente!");
+			return ADOPTION_LIST;
+		}
 	}
 
 }

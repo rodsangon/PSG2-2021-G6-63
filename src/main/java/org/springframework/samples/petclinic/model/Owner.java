@@ -171,6 +171,14 @@ public class Owner extends Person {
 		return null;
 	}
 
+	public Adoption getAdoption() {
+		return adoption;
+	}
+
+	public void setAdoption(Adoption adoption) {
+		this.adoption = adoption;
+	}
+
 	@Override
 	public String toString() {
 		return new ToStringCreator(this)

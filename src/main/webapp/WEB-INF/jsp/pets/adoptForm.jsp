@@ -7,14 +7,51 @@
 
 <petclinic:layout pageName="adoption">
 	<form:form modelAttribute="adoption" class="form-horizontal">
-	<c:out value="${adoptant.id}"></c:out>
-		<input type="hidden" name="originalOwnerId"
+	<input type="hidden" name="originalOwner"
 			value="${originalOwner.id}" />
-			<input type="hidden" name="adoptantId"
+		<input type="hidden" name="originalOwner"
+			value="${originalOwner.id}" />
+			<input type="hidden" name="adoptant"
 			value="${adoptant.id}" />
+			<input type="hidden" name="pet"
+			value="${pet.id}" />
 		<div class="form-group has-feedback">
 			<petclinic:inputField label="Descripción" name="description" />
 		</div>
+		
+		<div>
+		
+			<h2>
+		<fmt:message key="owner" />
+	</h2>
+
+	<table class="table table-striped">
+		<tr>
+			<th><fmt:message key="name" /></th>
+			<td><b><c:out value="${originalOwner.firstName} ${originalOwner.lastName}" /></b></td>
+		</tr>
+		<tr>
+			<th><fmt:message key="adress" /></th>
+			<td><c:out value="${originalOwner.address}" /></td>
+		</tr>
+		<tr>
+			<th><fmt:message key="city" /></th>
+			<td><c:out value="${originalOwner.city}" /></td>
+		</tr>
+		<tr>
+			<th><fmt:message key="phone" /></th>
+			<td><c:out value="${originalOwner.telephone}" /></td>
+		</tr>
+		
+		<tr>
+			<th><fmt:message key="username" /></th>
+			<td><c:out value="${originalOwner.user.username}" /></td>
+		</tr>
+	</table>
+			
+		
+		</div>
+		
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
 				<button class="btn btn-default" type="submit">
