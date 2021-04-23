@@ -50,19 +50,24 @@ public class DonationController {
 	
 	@GetMapping(value= {"/causes/{causeId}/donation/new"})
 	public String initCreateDonationForm(@PathVariable("causeId") int causeId, Map<String, Object> model){
+        Donation donation = new Donation();
+        Cause cause = new Cause();
+        cause = causeService.findById(causeId).get();
+        cause.addDonation(donation);
+        model.put("donation", donation);
 		return "causes/createDonation";
 	}
 	
 	@PostMapping(value= {"/causes/{causeId}/donation/new"})
-	public String processNewDonationForm(@Valid Donation donation, @PathVariable("causeId") int petId, BindingResult result) {
-		System.out.println("LLEGA AQUI" + donation.toString());
+	public String processNewDonationForm(@Valid Donation donation, @PathVariable("causeId") int causeId, BindingResult result) {
     	if(result.hasErrors()) {
-    		System.out.println("hAY ERRORES");
     		return "causes/createDonation";
     	} else {
-    		System.out.println("NO HAY ERRORES");
-    		this.causeService.saveDonation(donation);
-    		return "causes/{causeId}/show";
+            Cause cause = new Cause();
+            cause = causeService.findById(causeId).get();
+            cause.addDonation(donation);
+            this.donationService.save(donation);
+    		return "redirect:/causes/{causeId}/show";
     	}
 	}
 	
